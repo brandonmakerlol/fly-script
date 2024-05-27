@@ -96,7 +96,7 @@ local function CheckKey()
         end
 
         -- Execute main script after loading
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/brandonmakerlol/fly-script/main/hub"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/brandonmakerlol/fly-script/main/finished%20hub"))()
 
         -- Remove loading frame after execution
         LoadingFrame:Destroy()
