@@ -1,0 +1,110 @@
+-- Create the GUI
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ScriptHub"
+ScreenGui.Parent = game.CoreGui
+
+-- Create the MainFrame
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0, 250, 0, 250) -- Increased size
+MainFrame.Position = UDim2.new(0.5, -125, 0.5, -125) -- Centered
+MainFrame.BackgroundTransparency = 0.5
+MainFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+MainFrame.BorderSizePixel = 0
+MainFrame.Active = true
+MainFrame.Draggable = true
+MainFrame.Parent = ScreenGui
+
+-- Title
+local Title = Instance.new("TextLabel")
+Title.Name = "Title"
+Title.Size = UDim2.new(1, 0, 0, 30)
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.BackgroundTransparency = 0.5
+Title.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+Title.BorderSizePixel = 0
+Title.Font = Enum.Font.SourceSans
+Title.Text = "Orbit FE Hub"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 18
+Title.Parent = MainFrame
+
+-- Create the KeyPrompt
+local KeyPrompt = Instance.new("TextBox")
+KeyPrompt.Name = "KeyPrompt"
+KeyPrompt.Size = UDim2.new(0, 200, 0, 50)
+KeyPrompt.Position = UDim2.new(0.5, -100, 0.7, -25) -- Centered
+KeyPrompt.BackgroundTransparency = 0.5
+KeyPrompt.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+KeyPrompt.BorderSizePixel = 0
+KeyPrompt.Font = Enum.Font.SourceSans
+KeyPrompt.PlaceholderText = "Enter Key"
+KeyPrompt.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
+KeyPrompt.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeyPrompt.TextSize = 18
+KeyPrompt.Parent = MainFrame
+
+-- Create the CheckKey button
+local CheckKeyButton = Instance.new("TextButton")
+CheckKeyButton.Name = "CheckKeyButton"
+CheckKeyButton.Size = UDim2.new(0, 200, 0, 40)
+CheckKeyButton.Position = UDim2.new(0.5, -100, 0.8, 0) -- Centered
+CheckKeyButton.BackgroundTransparency = 0.5
+CheckKeyButton.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+CheckKeyButton.BorderSizePixel = 0
+CheckKeyButton.Font = Enum.Font.SourceSans
+CheckKeyButton.Text = "Check Key"
+CheckKeyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CheckKeyButton.TextSize = 18
+CheckKeyButton.Parent = MainFrame
+
+-- Function to check the key
+local function CheckKey()
+    local enteredKey = KeyPrompt.Text
+    if enteredKey == "orbithaha" then
+        KeyPrompt.Visible = false
+        KeyPrompt.Text = ""
+        CheckKeyButton.Visible = false
+        local LoadingFrame = Instance.new("Frame")
+        LoadingFrame.Name = "LoadingFrame"
+        LoadingFrame.Size = UDim2.new(0, 200, 0, 50)
+        LoadingFrame.Position = UDim2.new(0.5, -100, 0.7, -25) -- Centered
+        LoadingFrame.BackgroundTransparency = 0.5
+        LoadingFrame.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+        LoadingFrame.BorderSizePixel = 0
+        LoadingFrame.Parent = MainFrame
+
+        local LoadingText = Instance.new("TextLabel")
+        LoadingText.Name = "LoadingText"
+        LoadingText.Size = UDim2.new(1, 0, 1, 0) -- Full size
+        LoadingText.BackgroundTransparency = 1
+        LoadingText.Font = Enum.Font.SourceSans
+        LoadingText.Text = "Loading!"
+        LoadingText.TextColor3 = Color3.fromRGB(0, 0, 0) -- Changed to black
+        LoadingText.TextSize = 18
+        LoadingText.Parent = LoadingFrame
+
+        local LoadingBar = Instance.new("Frame")
+        LoadingBar.Name = "LoadingBar"
+        LoadingBar.Size = UDim2.new(0, 0, 1, 0) -- Full height
+        LoadingBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        LoadingBar.Parent = LoadingFrame
+
+        for i = 0, 1, 0.01 do
+            LoadingBar.Size = UDim2.new(i, 0, 1, 0) -- Update LoadingBar size
+            wait(0.01)
+        end
+
+        -- Execute main script after loading
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/brandonmakerlol/fly-script/main/hub"))()
+
+        -- Remove loading frame after execution
+        LoadingFrame:Destroy()
+        MainFrame:Destroy() -- Remove main frame after loading
+    else
+        print("Incorrect Key!")
+    end
+end
+
+-- Connect the CheckKey function to the button
+CheckKeyButton.MouseButton1Click:Connect(CheckKey)
