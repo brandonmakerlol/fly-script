@@ -98,5 +98,5 @@ ESPButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ESPButton.TextSize = 18
 ESPButton.Parent = MainFrame
 ESPButton.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/xyz/esp-script/main/esp-script.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/brandonmakerlol/fly-script/main/fly%20script"))()
 end)
